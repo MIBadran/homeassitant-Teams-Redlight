@@ -1,0 +1,12 @@
+#Router Script using IPTables
+#!/bin/sh
+iptables -N TEAMS_MEDIA_LOG 2>/dev/null
+iptables -F TEAMS_MEDIA_LOG
+iptables -D FORWARD -j TEAMS_MEDIA_LOG 2>/dev/null
+iptables -I FORWARD 1 -j TEAMS_MEDIA_LOG
+
+iptables -A TEAMS_MEDIA_LOG -p udp --sport 50000:50059 -d 52.112.0.0/14  -m limit --limit 1/second --limit-burst 1 -j LOG --log-prefix "TEAMS-MEDIA: " --log-level 5
+iptables -A TEAMS_MEDIA_LOG -p udp --dport 50000:50059 -s 52.112.0.0/14  -m limit --limit 1/second --limit-burst 1 -j LOG --log-prefix "TEAMS-MEDIA: " --log-level 5
+iptables -A TEAMS_MEDIA_LOG -p udp --sport 50000:50059 -d 52.122.0.0/15  -m limit --limit 1/second --limit-burst 1 -j LOG --log-prefix "TEAMS-MEDIA: " --log-level 5
+iptables -A TEAMS_MEDIA_LOG -p udp --dport 50000:50059 -s 52.122.0.0/15  -m limit --limit 1/second --limit-burst 1 -j LOG --log-prefix "TEAMS-MEDIA: " --log-level 5
+#
