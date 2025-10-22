@@ -16,6 +16,6 @@ iptables -A TEAMS_MEDIA_LOG -p udp --sport 50000:50059 -d 52.122.0.0/15  -m limi
 iptables -A TEAMS_MEDIA_LOG -p udp --dport 50000:50059 -s 52.122.0.0/15  -m limit --limit 1/second --limit-burst 1 -j LOG --log-prefix "TEAMS-MEDIA: " --log-level 5
 ################################################################################################################################
 
-Finaly add this automation from this repository https://github.com/MIBadran/homeassitant-Teams-Redlight  and adjust as needed 
+Finaly add this automation from this repository https://github.com/MIBadran/homeassitant-Teams-Redlight  and adjust as needed .
 
 
